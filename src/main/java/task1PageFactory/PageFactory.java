@@ -14,16 +14,16 @@ public class PageFactory {
         this.driver = driver;
     }
 
-    @FindBy(how= How.NAME, name = "q")
+    @FindBy(how = How.NAME, name = "q")
     WebElement searchField;
 
-    @FindBy(how=How.NAME,name="btnK")
+    @FindBy(how = How.NAME, name = "btnK")
     WebElement searchButton;
 
-    @FindBy(how= How.XPATH, using = "//*[@class='g']//*/h3[@class][contains(text(),'Википедия')]")
+    @FindBy(how = How.XPATH, using = "//*[@class='g']//*/h3[@class][contains(text(),'Википедия')]")
     List<WebElement> allElements;
 
-    public void find(String keyword){
+    public void find(String keyword) {
         searchField.click();
         searchField.sendKeys(keyword);
         searchButton.click();

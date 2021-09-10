@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FirstPageObject {
     private WebDriver webDriver;
@@ -12,21 +14,27 @@ public class FirstPageObject {
         this.webDriver = webDriver;
     }
 
-    public void enterGoogle(){
-        webDriver=new ChromeDriver();
-        webDriver.get("https://google.com");
+
+    public void enterGoogle() {
+        webDriver = new ChromeDriver();
+        String googleUrl = "https://google.com";
+        webDriver.get(googleUrl);
     }
 
-    public void enterGladiolus() throws InterruptedException {
-        webDriver.findElement(By.name("q")).sendKeys("гладиолус");
-        Thread.sleep(5000);
-        webDriver.findElement(By.name("btnK")).click();
+    public void enterGladiolus() {
+        String googleClass = "q";
+        String wordForSearch = "гладиолус";
+        webDriver.findElement(By.name(googleClass)).sendKeys(wordForSearch);
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        String button = "btnK";
+        wait.until(ExpectedConditions.elementToBeClickable(
+                webDriver.findElement(By.name(button)))).click();
     }
 
-    public boolean searchWikipedia(){
-        String text="https://ru.wikipedia.org";
-        WebElement element=webDriver.findElement(By.partialLinkText(text));
-        return element.getText().contains(text);
+    public boolean searchWikipedia() {
+        String linkText = "https://ru.wikipedia.org";
+        WebElement element = webDriver.findElement(By.partialLinkText(linkText));
+        return element.getText().contains(linkText);
     }
 
 }

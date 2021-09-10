@@ -12,13 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PageFactoryTest extends StartFinish {
 
+    private final String wikiURL = "https://ru.wikipedia.org";
+
     @Test
-    public void mainTest(){
-        webDriver.get("https://www.google.com/");
-        task1PageFactory.PageFactory pageFactoryTest= PageFactory.initElements(webDriver, task1PageFactory.PageFactory.class);
-        pageFactoryTest.find("гладиолус");
-        List<WebElement> resultSearch = webDriver.findElements(By.xpath("//*[@class='g']//*[contains(text(),'https://ru.wikipedia.org')]"));
-        assertTrue(resultSearch.stream().anyMatch(x->x.getText().contains("https://ru.wikipedia.org")),
+    public void mainTest() {
+        String URL = "https://www.google.com/";
+        String searchWord = "гладиолус";
+        String wikiXpath = "//*[@class='g']//*[contains(text(),'https://ru.wikipedia.org')]";
+
+        webDriver.get(URL);
+        task1PageFactory.PageFactory pageFactoryTest = PageFactory.initElements(webDriver, task1PageFactory.PageFactory.class);
+
+        pageFactoryTest.find(searchWord);
+
+        List<WebElement> resultSearch = webDriver.findElements(By.xpath(wikiXpath));
+        assertTrue(resultSearch.stream().anyMatch(x -> x.getText().contains(wikiURL)),
                 "Статьи не найдены");
     }
 }

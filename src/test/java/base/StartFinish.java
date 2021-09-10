@@ -12,7 +12,7 @@ public class StartFinish {
     protected WebDriver webDriver;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\chromedriver.exe");
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -22,7 +22,7 @@ public class StartFinish {
     }
 
     @AfterEach
-    public void quit(){
+    public void quit() {
         webDriver.quit();
     }
 }
