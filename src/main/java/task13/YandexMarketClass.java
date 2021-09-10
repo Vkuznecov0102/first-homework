@@ -138,6 +138,8 @@ public class YandexMarketClass {
         String sameNoteText = sameNote.getText();
         threadSleep();
         assertEquals(firstResult, sameNoteText);
+
+        //без Thread.sleep не работает
     }
 
 }
